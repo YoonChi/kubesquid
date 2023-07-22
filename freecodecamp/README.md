@@ -1,5 +1,5 @@
 
-Note: Most of the material below is from FreeCodeCamp except for:
+Note: Most of the material below is from FreeCodeCamp except:
 1. Using Apache Tomcat in place of Nginix for M1, M2. 
 
 ## The application that we are going to deploy to Kubernetes:
