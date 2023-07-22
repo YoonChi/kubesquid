@@ -14,9 +14,8 @@ Note: Most of the material below is from FreeCodeCamp except:
 ## Tools & Installations:
 - Installed Apache Server Tomacat as an alternative to Nginix web server. 
   - Apache Tomcat is a web container where you can deploy your web application and you can test on the local Mac OS machine. http://localhost:8080
-  - Once installed, start the Tomcat server,
-  `cd Downloads/apache-tomcat-10.1.11/bin`
-  
+  - Once installed, start the Tomcat server,<br>
+  `cd Downloads/apache-tomcat-10.1.11/bin`<br>
   `./startup.sh` # start the Tomcat server
   - When done, shut down the server.
   `./shutdown.sh` 
