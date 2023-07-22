@@ -10,7 +10,27 @@ Note: Most of the material below is from FreeCodeCamp except:
     - SA-webapp: a Java Web app that handles reqs from frontend
     - SA-logic: a python app that performs Sentiment Analysis 
 
+## Dependencies:
+_M1 M2 Installation only_
+- JDK8
+  - install:<br>
+    `brew tap AdoptOpenJDK/openjdk`<br>
+    `brew install adoptopenjdk8`
 
+- Maven
+  - install:<br>
+    `brew install maven`<br>
+_Set up environment variables_
+- `vim ~/.zshrc`
+- Add the following to your shell profile file to set up the environment variables:<br>
+`  # JDK 8
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"`
+
+`  # Maven
+export MAVEN_HOME="/opt/homebrew/Cellar/maven/3.9.3/libexec"<br>
+export PATH="$PATH:$MAVEN_HOME/bin"`
+
+  - 
 ## Tools & Installations:
 - Installed Apache Server Tomacat as an alternative to Nginix web server. 
   - Apache Tomcat is a web container where you can deploy your web application and you can test on the local Mac OS machine. http://localhost:8080
