@@ -27,12 +27,12 @@ _Set up environment variables_
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"`
 
 `  # Maven
-export MAVEN_HOME="/opt/homebrew/Cellar/maven/3.9.3/libexec"<br>
-export PATH="$PATH:$MAVEN_HOME/bin"`
+export MAVEN_HOME="/opt/homebrew/Cellar/maven/3.9.3/libexec"`<br>
+`export PATH="$PATH:$MAVEN_HOME/bin"`
 
   - 
 ## Tools & Installations:
-- Installed Apache Server Tomacat as an alternative to Nginix web server. 
+- **Installed Apache Server Tomacat as an alternative to Nginix web server.**
   - Apache Tomcat is a web container where you can deploy your web application and you can test on the local Mac OS machine. http://localhost:8080
   - Once installed, start the Tomcat server,<br>
     `cd Downloads/apache-tomcat-10.1.11/bin`<br>
@@ -44,3 +44,4 @@ export PATH="$PATH:$MAVEN_HOME/bin"`
     `cd Downloads/apache-tomcat-10.1.11/conf/server.xml`
   -  For the serving of static files with Apache Tomcat part...once you create your build for the frontend service, move the `/build` folder to `Downloads/apache-tomcat-10.1.11/webapps/ROOT`. But, before you do that..make sure to turn off the web server first to avoid any file conflicts. Once you've copied and moved over `/build` , start the Apache Tomcat to apply the changes.
   
+- **Modify sa-frontend's Dockerfile to use Apache Tomcat image as the base image.**
