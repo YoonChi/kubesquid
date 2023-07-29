@@ -39,7 +39,6 @@ Follow instructions [here](https://cloud.google.com/kubernetes-engine/docs/how-t
 - such as increasing number of replicas
   - `kubectl scale deployment <DEPLOYMENT_NAME> --replicas <NUMBER_OF_REPLICAS>`
 
-
 ### Expose the Deployment
 - Expose the app to the internet so users can access it. 
 - Kubernetes's `Service` exposes the app to external traffic.
@@ -67,4 +66,3 @@ Follow instructions [here](https://cloud.google.com/kubernetes-engine/docs/how-t
 
 **Cleanup**
 Since load balancers in GCP are billed per Compute Engine's load balancer pricing, delete the kubesquid-app's Service to avoid incurring charges.
-
