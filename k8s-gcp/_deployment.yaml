@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubesquid-app
+spec:
+  replicas: 3   # number of replicated pods that the Deployment manages
+  selector:
+    matchLabels:
+      run: kubesquid-app # must match .template.metadata.labels
+  template:
+    metadata:
+      labels:   # label given to each Pod, which the Deployment uses to manage the pods
+        app: k8s-ocean
+        env: dv
+        run: kubesquid-app
+    spec:   # it is the Pod specification; defines how each Pod should run. 
+      containers:   # includes the name of the container to run in each Pod and the container image that should run
+      - name: hello-app
+        image: us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
