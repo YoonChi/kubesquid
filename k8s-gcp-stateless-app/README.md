@@ -10,7 +10,6 @@ Follow instructions [here](https://cloud.google.com/kubernetes-engine/docs/how-t
 1. Create a [Deployment manifest](_deployment.yaml) file.
 2. `kubectl apply -f <PATH_TO_DEPLOYMENT_FILE>`
 3. In the Deployment manifest, the 3 replicated pods are labelled `app=kubesquid-app`
-  - To get information about Deployment, run `kubectl describe deployment kubesquid-app`
 
 **Inspect the Deployment**
 1. To get detailed info about the Deployment:

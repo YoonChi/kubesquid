@@ -1,3 +1,3 @@
 # kubesquid
-what are you squidding for? this repo is the portal to a school of k8s knowledge.
+This repo is the portal to an ocean of k8s knowledge. 
 
