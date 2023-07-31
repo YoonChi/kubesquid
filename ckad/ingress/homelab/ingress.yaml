@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    ingressClassName: "gce"  # tells GKE to create a public load balancer
+    kubernetes.io/ingress.global-static-ip-name: "ingress-webapps"  # tells GKE to attach static IP we createdto ingress load balancer
+spec:
+  rules:
+  - http: # create an http rule to route all traffic, /*, to the nginx-service endpoint
+      paths:
+      - path: "/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
