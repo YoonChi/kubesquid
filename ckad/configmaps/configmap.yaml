@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: play-proto
+data:
+  # property-like keys; each kley maps to a simple value
+  app-color: "blue" 
+  app-env: "dv"
+  product: "prototype"
+
+

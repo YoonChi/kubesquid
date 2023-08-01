@@ -9,7 +9,7 @@ Helpful commands:
 - `kubectl explain pod` or `kubectl explain pod.spec | less` or `kubectl explain --recursive pod.spec | less`
 
 ### Generating YAML files and configuring multi-container pods
-- `kubectl run multicontainer --image=busybox -o yaml --dry-run=client -o yaml > _multicontainer.yaml` # this creates the yaml file
+- `kubectl run multicontainer --image=busybox --dry-run=client -o yaml > _multicontainer.yaml` # this creates the yaml file
 - `kubectl create -f multicontainer.yaml` # this creates the pod
 
 **Use cases for multi-container pods**
