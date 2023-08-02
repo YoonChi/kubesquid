@@ -1,0 +1,17 @@
+{
+  "etag": "ACAB",
+  "bindings":[
+    {
+      "members":["serviceAccount:sa-demo-tf-sbx@kubefish.iam.gserviceaccount.com"],
+      "role":"roles/iam.serviceAccountTokenCreator"
+    },
+    {
+      "members":["serviceAccount:sa-demo-tf-sbx@kubefish.iam.gserviceaccount.com"],
+      "role":"roles/storage.objectAdmin"
+    },
+    {
+      "members":["serviceAccount:ycstudent13@kubefish.iam.gserviceaccount.com"],
+      "role":"roles/iam.serviceAccountTokenCreator"
+    }
+  ]
+}

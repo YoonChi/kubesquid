@@ -1,0 +1,3 @@
+bucket = "kubefish-sbx-tfstate"
+prefix = "static.tfstate.d"
+impersonate_service_account = "sa-demo-tf-sbx@kubefish.iam.gserviceaccount.com"
