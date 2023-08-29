@@ -81,8 +81,11 @@ Once you've shelled into the pod..you can run these cmds to find more info about
 **Error Meanings:**
 - `CrashLoopBackOff`: means application could not be started for some reason
 - `Last State:` field indicates the last state of the Pod, and provides the Exit Code. If the Exit Code is a `0`, then the application is working. If it is any other number, use `kubectl logs` to dig further.
+- `00MKilled` : out of memory from Linux - indicates the resource limits are too strict, and application needs more memory
 ![image](pods/images/pod-error.png)
 ![image](pods/images/mydb-logs.png)
+![image](pods/images/pod-error-2.png)
+
 To re-create the pod, this time with the environment variables, delete mydb pod, run `kubectl run --help | less`. You'll find an example command that shows you how to include the environment variables in the kubectl commands.
 
 **Example:** Start a hazelcast pod and set environment variables "DNS_DOMAIN=cluster" and "POD_NAMESPACE=default" in the container
@@ -104,4 +107,58 @@ In your terminal:
 `curl localhost:8000`
 
 
+### Jobs
+To create a pod that runs up to completion, use Jobs. Useful for backup, calculation, batch processing..etc.
+
+`kubectl create -h | less` # view all the resources you can create   
+`kubectl create job onejob --image=busybox -- date`
+`kubectl get jobs,pods`
+`kubectl get jobs -o yaml | grep -B 5 restartPolicy`
+`kubectl delete job.batch onejob` # deletes both the Job and the Pod
+
+`kubectl create job mynewjob --image=busybox --dry-run=client -o yaml -- sleep 5 > mynewjob.yaml`
+modify mynewjob.yaml to add completions: 3, ttlSecondsAfterFinished: 60 under job's spec block to indicate how many jobs and how long each of those jobs should sta
+`kubectl create -f mynewjob.yaml`
+
+By running a job, you run a Pod.
+
+
+### CronJobs
+- Jobs: used to run a task X number of times.
+- CronJobs: used for tasks that need to run on regular basis. 
+- When running a CronJob, a Job will be scheduled. 
+- This Job, on its turn, will start a Pod
+- To test a CronJob: use `kubectl create job myjob --from=cronjob/mycronjob`
+
+Try it:
+`kubectl create cronjob -h | less`
+`kubectl create cronjob runme --image=busybox --schedule="*/2 * * * *" -- echo greetings from the cluster` # cronjob is created and will schedule the creation of jobs based on the set schedule (every 2 minutes)
+`kubectl get all`
+`kubectl create job runme --from=cronjob/runme` # this manually triggers the creation of the job
+![image](pods/images/cronjobs.png)
+`kubectl delete cronjobs.batch runme`
+
+
+### Managing Resource Limitations and Quota
+- can be managed by using Memory/CPU requests and limits in pod.spec.containers.resources
+- Definitions:
+  - **request:** initial request for resources (megabytes)
+  - **limit:** defines the upper threshold of resources a Pod can use
+    - CPU limits are expressed in millicore, or millicpu, 1/1000 of a CPU core
+    - when scheduled, kube-scheduler ensures the node running the Pods has all the requested resources available
+    - If a Pod with resource limits cannot be scheduled, it will show a status of Pending (it means the kube-scheduler could not find the node offering the requested resources)
+  - **quota:** restrictions that are applied to namespaces
+    - If Quota are set on a namespace, applications started in that namespace must have resource requests and limits set 
+
+
+Try it yourself:
+- Run a Pod with limitations
+  - `kubectl run frontend --image=mysql --env MYSQL_ROOT_PASSWORD=password --dry-run=client -o yaml > frontend-resources.yaml`
+  - `kubectl create -f frontend-resources.yaml`
+  - `kubectl get pods`
+  - `kubectl describe pod frontend`
+  - `kubectl delete -f frontend-resources.yaml` # deletes the pod
+
+
+If limitations need to be increased, then you'll need to delete the pod (`kubectl delete -f frontend-resources.yaml`), revise the yaml with new resource limits, and then run `kubectl apply -f ...` 
 Regular user access to apps is done through services and ingress.
